@@ -1,0 +1,509 @@
+<!doctype html>
+<html>
+<head>
+<meta charset='UTF-8'><meta name='viewport' content='width=device-width initial-scale=1'>
+<title>numpy60题</title><link href='https://fonts.loli.net/css?family=Open+Sans:400italic,700italic,700,400&subset=latin,latin-ext' rel='stylesheet' type='text/css' /><style type='text/css'>html {overflow-x: initial !important;}:root { --bg-color:#ffffff; --text-color:#333333; --select-text-bg-color:#B5D6FC; --select-text-font-color:auto; --monospace:"Lucida Console",Consolas,"Courier",monospace; }
+html { font-size: 14px; background-color: var(--bg-color); color: var(--text-color); font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+body { margin: 0px; padding: 0px; height: auto; bottom: 0px; top: 0px; left: 0px; right: 0px; font-size: 1rem; line-height: 1.42857; overflow-x: hidden; background: inherit; tab-size: 4; }
+iframe { margin: auto; }
+a.url { word-break: break-all; }
+a:active, a:hover { outline: 0px; }
+.in-text-selection, ::selection { text-shadow: none; background: var(--select-text-bg-color); color: var(--select-text-font-color); }
+#write { margin: 0px auto; height: auto; width: inherit; word-break: normal; overflow-wrap: break-word; position: relative; white-space: normal; overflow-x: visible; padding-top: 40px; }
+#write.first-line-indent p { text-indent: 2em; }
+#write.first-line-indent li p, #write.first-line-indent p * { text-indent: 0px; }
+#write.first-line-indent li { margin-left: 2em; }
+.for-image #write { padding-left: 8px; padding-right: 8px; }
+body.typora-export { padding-left: 30px; padding-right: 30px; }
+.typora-export .footnote-line, .typora-export li, .typora-export p { white-space: pre-wrap; }
+@media screen and (max-width: 500px) {
+  body.typora-export { padding-left: 0px; padding-right: 0px; }
+  #write { padding-left: 20px; padding-right: 20px; }
+  .CodeMirror-sizer { margin-left: 0px !important; }
+  .CodeMirror-gutters { display: none !important; }
+}
+#write li > figure:last-child { margin-bottom: 0.5rem; }
+#write ol, #write ul { position: relative; }
+img { max-width: 100%; vertical-align: middle; }
+button, input, select, textarea { color: inherit; font: inherit; }
+input[type="checkbox"], input[type="radio"] { line-height: normal; padding: 0px; }
+*, ::after, ::before { box-sizing: border-box; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p, #write pre { width: inherit; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p { position: relative; }
+p { line-height: inherit; }
+h1, h2, h3, h4, h5, h6 { break-after: avoid-page; break-inside: avoid; orphans: 2; }
+p { orphans: 4; }
+h1 { font-size: 2rem; }
+h2 { font-size: 1.8rem; }
+h3 { font-size: 1.6rem; }
+h4 { font-size: 1.4rem; }
+h5 { font-size: 1.2rem; }
+h6 { font-size: 1rem; }
+.md-math-block, .md-rawblock, h1, h2, h3, h4, h5, h6, p { margin-top: 1rem; margin-bottom: 1rem; }
+.hidden { display: none; }
+.md-blockmeta { color: rgb(204, 204, 204); font-weight: 700; font-style: italic; }
+a { cursor: pointer; }
+sup.md-footnote { padding: 2px 4px; background-color: rgba(238, 238, 238, 0.7); color: rgb(85, 85, 85); border-radius: 4px; cursor: pointer; }
+sup.md-footnote a, sup.md-footnote a:hover { color: inherit; text-transform: inherit; text-decoration: inherit; }
+#write input[type="checkbox"] { cursor: pointer; width: inherit; height: inherit; }
+figure { overflow-x: auto; margin: 1.2em 0px; max-width: calc(100% + 16px); padding: 0px; }
+figure > table { margin: 0px !important; }
+tr { break-inside: avoid; break-after: auto; }
+thead { display: table-header-group; }
+table { border-collapse: collapse; border-spacing: 0px; width: 100%; overflow: auto; break-inside: auto; text-align: left; }
+table.md-table td { min-width: 32px; }
+.CodeMirror-gutters { border-right: 0px; background-color: inherit; }
+.CodeMirror-linenumber { user-select: none; }
+.CodeMirror { text-align: left; }
+.CodeMirror-placeholder { opacity: 0.3; }
+.CodeMirror pre { padding: 0px 4px; }
+.CodeMirror-lines { padding: 0px; }
+div.hr:focus { cursor: none; }
+#write pre { white-space: pre-wrap; }
+#write.fences-no-line-wrapping pre { white-space: pre; }
+#write pre.ty-contain-cm { white-space: normal; }
+.CodeMirror-gutters { margin-right: 4px; }
+.md-fences { font-size: 0.9rem; display: block; break-inside: avoid; text-align: left; overflow: visible; white-space: pre; background: inherit; position: relative !important; }
+.md-diagram-panel { width: 100%; margin-top: 10px; text-align: center; padding-top: 0px; padding-bottom: 8px; overflow-x: auto; }
+#write .md-fences.mock-cm { white-space: pre-wrap; }
+.md-fences.md-fences-with-lineno { padding-left: 0px; }
+#write.fences-no-line-wrapping .md-fences.mock-cm { white-space: pre; overflow-x: auto; }
+.md-fences.mock-cm.md-fences-with-lineno { padding-left: 8px; }
+.CodeMirror-line, twitterwidget { break-inside: avoid; }
+.footnotes { opacity: 0.8; font-size: 0.9rem; margin-top: 1em; margin-bottom: 1em; }
+.footnotes + .footnotes { margin-top: 0px; }
+.md-reset { margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: top; background: 0px 0px; text-decoration: none; text-shadow: none; float: none; position: static; width: auto; height: auto; white-space: nowrap; cursor: inherit; -webkit-tap-highlight-color: transparent; line-height: normal; font-weight: 400; text-align: left; box-sizing: content-box; direction: ltr; }
+li div { padding-top: 0px; }
+blockquote { margin: 1rem 0px; }
+li .mathjax-block, li p { margin: 0.5rem 0px; }
+li { margin: 0px; position: relative; }
+blockquote > :last-child { margin-bottom: 0px; }
+blockquote > :first-child, li > :first-child { margin-top: 0px; }
+.footnotes-area { color: rgb(136, 136, 136); margin-top: 0.714rem; padding-bottom: 0.143rem; white-space: normal; }
+#write .footnote-line { white-space: pre-wrap; }
+@media print {
+  body, html { border: 1px solid transparent; height: 99%; break-after: avoid; break-before: avoid; }
+  #write { margin-top: 0px; padding-top: 0px; border-color: transparent !important; }
+  .typora-export * { -webkit-print-color-adjust: exact; }
+  html.blink-to-pdf { font-size: 13px; }
+  .typora-export #write { padding-left: 32px; padding-right: 32px; padding-bottom: 0px; break-after: avoid; }
+  .typora-export #write::after { height: 0px; }
+}
+.footnote-line { margin-top: 0.714em; font-size: 0.7em; }
+a img, img a { cursor: pointer; }
+pre.md-meta-block { font-size: 0.8rem; min-height: 0.8rem; white-space: pre-wrap; background: rgb(204, 204, 204); display: block; overflow-x: hidden; }
+p > .md-image:only-child:not(.md-img-error) img, p > img:only-child { display: block; margin: auto; }
+p > .md-image:only-child { display: inline-block; width: 100%; }
+#write .MathJax_Display { margin: 0.8em 0px 0px; }
+.md-math-block { width: 100%; }
+.md-math-block:not(:empty)::after { display: none; }
+[contenteditable="true"]:active, [contenteditable="true"]:focus { outline: 0px; box-shadow: none; }
+.md-task-list-item { position: relative; list-style-type: none; }
+.task-list-item.md-task-list-item { padding-left: 0px; }
+.md-task-list-item > input { position: absolute; top: 0px; left: 0px; margin-left: -1.2em; margin-top: calc(1em - 10px); border: none; }
+.math { font-size: 1rem; }
+.md-toc { min-height: 3.58rem; position: relative; font-size: 0.9rem; border-radius: 10px; }
+.md-toc-content { position: relative; margin-left: 0px; }
+.md-toc-content::after, .md-toc::after { display: none; }
+.md-toc-item { display: block; color: rgb(65, 131, 196); }
+.md-toc-item a { text-decoration: none; }
+.md-toc-inner:hover { text-decoration: underline; }
+.md-toc-inner { display: inline-block; cursor: pointer; }
+.md-toc-h1 .md-toc-inner { margin-left: 0px; font-weight: 700; }
+.md-toc-h2 .md-toc-inner { margin-left: 2em; }
+.md-toc-h3 .md-toc-inner { margin-left: 4em; }
+.md-toc-h4 .md-toc-inner { margin-left: 6em; }
+.md-toc-h5 .md-toc-inner { margin-left: 8em; }
+.md-toc-h6 .md-toc-inner { margin-left: 10em; }
+@media screen and (max-width: 48em) {
+  .md-toc-h3 .md-toc-inner { margin-left: 3.5em; }
+  .md-toc-h4 .md-toc-inner { margin-left: 5em; }
+  .md-toc-h5 .md-toc-inner { margin-left: 6.5em; }
+  .md-toc-h6 .md-toc-inner { margin-left: 8em; }
+}
+a.md-toc-inner { font-size: inherit; font-style: inherit; font-weight: inherit; line-height: inherit; }
+.footnote-line a:not(.reversefootnote) { color: inherit; }
+.md-attr { display: none; }
+.md-fn-count::after { content: "."; }
+code, pre, samp, tt { font-family: var(--monospace); }
+kbd { margin: 0px 0.1em; padding: 0.1em 0.6em; font-size: 0.8em; color: rgb(36, 39, 41); background: rgb(255, 255, 255); border: 1px solid rgb(173, 179, 185); border-radius: 3px; box-shadow: rgba(12, 13, 14, 0.2) 0px 1px 0px, rgb(255, 255, 255) 0px 0px 0px 2px inset; white-space: nowrap; vertical-align: middle; }
+.md-comment { color: rgb(162, 127, 3); opacity: 0.8; font-family: var(--monospace); }
+code { text-align: left; vertical-align: initial; }
+a.md-print-anchor { white-space: pre !important; border-width: initial !important; border-style: none !important; border-color: initial !important; display: inline-block !important; position: absolute !important; width: 1px !important; right: 0px !important; outline: 0px !important; background: 0px 0px !important; text-decoration: initial !important; text-shadow: initial !important; }
+.md-inline-math .MathJax_SVG .noError { display: none !important; }
+.html-for-mac .inline-math-svg .MathJax_SVG { vertical-align: 0.2px; }
+.md-math-block .MathJax_SVG_Display { text-align: center; margin: 0px; position: relative; text-indent: 0px; max-width: none; max-height: none; min-height: 0px; min-width: 100%; width: auto; overflow-y: hidden; display: block !important; }
+.MathJax_SVG_Display, .md-inline-math .MathJax_SVG_Display { width: auto; margin: inherit; display: inline-block !important; }
+.MathJax_SVG .MJX-monospace { font-family: var(--monospace); }
+.MathJax_SVG .MJX-sans-serif { font-family: sans-serif; }
+.MathJax_SVG { display: inline; font-style: normal; font-weight: 400; line-height: normal; zoom: 90%; text-indent: 0px; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; overflow-wrap: normal; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0px; min-height: 0px; border: 0px; padding: 0px; margin: 0px; }
+.MathJax_SVG * { transition: none 0s ease 0s; }
+.MathJax_SVG_Display svg { vertical-align: middle !important; margin-bottom: 0px !important; margin-top: 0px !important; }
+.os-windows.monocolor-emoji .md-emoji { font-family: "Segoe UI Symbol", sans-serif; }
+.md-diagram-panel > svg { max-width: 100%; }
+[lang="mermaid"] svg, [lang="flow"] svg { max-width: 100%; height: auto; }
+[lang="mermaid"] .node text { font-size: 1rem; }
+table tr th { border-bottom: 0px; }
+video { max-width: 100%; display: block; margin: 0px auto; }
+iframe { max-width: 100%; width: 100%; border: none; }
+.highlight td, .highlight tr { border: 0px; }
+svg[id^="mermaidChart"] { line-height: 1em; }
+mark { background: rgb(255, 255, 0); color: rgb(0, 0, 0); }
+.md-html-inline .md-plain, .md-html-inline strong, mark .md-inline-math, mark strong { color: inherit; }
+mark .md-meta { color: rgb(0, 0, 0); opacity: 0.3 !important; }
+
+
+:root {
+    --side-bar-bg-color: #fafafa;
+    --control-text-color: #777;
+}
+
+@include-when-export url(https://fonts.loli.net/css?family=Open+Sans:400italic,700italic,700,400&subset=latin,latin-ext);
+
+html {
+    font-size: 16px;
+}
+
+body {
+    font-family: "Open Sans","Clear Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
+    color: rgb(51, 51, 51);
+    line-height: 1.6;
+}
+
+#write {
+    max-width: 860px;
+  	margin: 0 auto;
+  	padding: 30px;
+    padding-bottom: 100px;
+}
+#write > ul:first-child,
+#write > ol:first-child{
+    margin-top: 30px;
+}
+
+a {
+    color: #4183C4;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    position: relative;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    font-weight: bold;
+    line-height: 1.4;
+    cursor: text;
+}
+h1:hover a.anchor,
+h2:hover a.anchor,
+h3:hover a.anchor,
+h4:hover a.anchor,
+h5:hover a.anchor,
+h6:hover a.anchor {
+    text-decoration: none;
+}
+h1 tt,
+h1 code {
+    font-size: inherit;
+}
+h2 tt,
+h2 code {
+    font-size: inherit;
+}
+h3 tt,
+h3 code {
+    font-size: inherit;
+}
+h4 tt,
+h4 code {
+    font-size: inherit;
+}
+h5 tt,
+h5 code {
+    font-size: inherit;
+}
+h6 tt,
+h6 code {
+    font-size: inherit;
+}
+h1 {
+    padding-bottom: .3em;
+    font-size: 2.25em;
+    line-height: 1.2;
+    border-bottom: 1px solid #eee;
+}
+h2 {
+   padding-bottom: .3em;
+    font-size: 1.75em;
+    line-height: 1.225;
+    border-bottom: 1px solid #eee;
+}
+h3 {
+    font-size: 1.5em;
+    line-height: 1.43;
+}
+h4 {
+    font-size: 1.25em;
+}
+h5 {
+    font-size: 1em;
+}
+h6 {
+   font-size: 1em;
+    color: #777;
+}
+p,
+blockquote,
+ul,
+ol,
+dl,
+table{
+    margin: 0.8em 0;
+}
+li>ol,
+li>ul {
+    margin: 0 0;
+}
+hr {
+    height: 2px;
+    padding: 0;
+    margin: 16px 0;
+    background-color: #e7e7e7;
+    border: 0 none;
+    overflow: hidden;
+    box-sizing: content-box;
+}
+
+li p.first {
+    display: inline-block;
+}
+ul,
+ol {
+    padding-left: 30px;
+}
+ul:first-child,
+ol:first-child {
+    margin-top: 0;
+}
+ul:last-child,
+ol:last-child {
+    margin-bottom: 0;
+}
+blockquote {
+    border-left: 4px solid #dfe2e5;
+    padding: 0 15px;
+    color: #777777;
+}
+blockquote blockquote {
+    padding-right: 0;
+}
+table {
+    padding: 0;
+    word-break: initial;
+}
+table tr {
+    border-top: 1px solid #dfe2e5;
+    margin: 0;
+    padding: 0;
+}
+table tr:nth-child(2n),
+thead {
+    background-color: #f8f8f8;
+}
+table tr th {
+    font-weight: bold;
+    border: 1px solid #dfe2e5;
+    border-bottom: 0;
+    margin: 0;
+    padding: 6px 13px;
+}
+table tr td {
+    border: 1px solid #dfe2e5;
+    margin: 0;
+    padding: 6px 13px;
+}
+table tr th:first-child,
+table tr td:first-child {
+    margin-top: 0;
+}
+table tr th:last-child,
+table tr td:last-child {
+    margin-bottom: 0;
+}
+
+.CodeMirror-lines {
+    padding-left: 4px;
+}
+
+.code-tooltip {
+    box-shadow: 0 1px 1px 0 rgba(0,28,36,.3);
+    border-top: 1px solid #eef2f2;
+}
+
+.md-fences,
+code,
+tt {
+    border: 1px solid #e7eaed;
+    background-color: #f8f8f8;
+    border-radius: 3px;
+    padding: 0;
+    padding: 2px 4px 0px 4px;
+    font-size: 0.9em;
+}
+
+code {
+    background-color: #f3f4f4;
+    padding: 0 2px 0 2px;
+}
+
+.md-fences {
+    margin-bottom: 15px;
+    margin-top: 15px;
+    padding-top: 8px;
+    padding-bottom: 6px;
+}
+
+
+.md-task-list-item > input {
+  margin-left: -1.3em;
+}
+
+@media print {
+    html {
+        font-size: 13px;
+    }
+    table,
+    pre {
+        page-break-inside: avoid;
+    }
+    pre {
+        word-wrap: break-word;
+    }
+}
+
+.md-fences {
+	background-color: #f8f8f8;
+}
+#write pre.md-meta-block {
+	padding: 1rem;
+    font-size: 85%;
+    line-height: 1.45;
+    background-color: #f7f7f7;
+    border: 0;
+    border-radius: 3px;
+    color: #777777;
+    margin-top: 0 !important;
+}
+
+.mathjax-block>.code-tooltip {
+	bottom: .375rem;
+}
+
+.md-mathjax-midline {
+    background: #fafafa;
+}
+
+#write>h3.md-focus:before{
+	left: -1.5625rem;
+	top: .375rem;
+}
+#write>h4.md-focus:before{
+	left: -1.5625rem;
+	top: .285714286rem;
+}
+#write>h5.md-focus:before{
+	left: -1.5625rem;
+	top: .285714286rem;
+}
+#write>h6.md-focus:before{
+	left: -1.5625rem;
+	top: .285714286rem;
+}
+.md-image>.md-meta {
+    /*border: 1px solid #ddd;*/
+    border-radius: 3px;
+    padding: 2px 0px 0px 4px;
+    font-size: 0.9em;
+    color: inherit;
+}
+
+.md-tag {
+    color: #a7a7a7;
+    opacity: 1;
+}
+
+.md-toc { 
+    margin-top:20px;
+    padding-bottom:20px;
+}
+
+.sidebar-tabs {
+    border-bottom: none;
+}
+
+#typora-quick-open {
+    border: 1px solid #ddd;
+    background-color: #f8f8f8;
+}
+
+#typora-quick-open-item {
+    background-color: #FAFAFA;
+    border-color: #FEFEFE #e5e5e5 #e5e5e5 #eee;
+    border-style: solid;
+    border-width: 1px;
+}
+
+/** focus mode */
+.on-focus-mode blockquote {
+    border-left-color: rgba(85, 85, 85, 0.12);
+}
+
+header, .context-menu, .megamenu-content, footer{
+    font-family: "Segoe UI", "Arial", sans-serif;
+}
+
+.file-node-content:hover .file-node-icon,
+.file-node-content:hover .file-node-open-state{
+    visibility: visible;
+}
+
+.mac-seamless-mode #typora-sidebar {
+    background-color: #fafafa;
+    background-color: var(--side-bar-bg-color);
+}
+
+.md-lang {
+    color: #b4654d;
+}
+
+.html-for-mac .context-menu {
+    --item-hover-bg-color: #E6F0FE;
+}
+
+#md-notification .btn {
+    border: 0;
+}
+
+.dropdown-menu .divider {
+    border-color: #e5e5e5;
+}
+
+.ty-preferences .window-content {
+    background-color: #fafafa;
+}
+
+.ty-preferences .nav-group-item.active {
+    color: white;
+    background: #999;
+}
+
+
+</style>
+</head>
+<body class='typora-export os-windows' >
+<div  id='write'  class = 'is-node'><h3><a name="1导入numpy库" class="md-header-anchor"></a><span>1.导入numpy库</span></h3><h3><a name="2访问numpy的私有属性version获取numpy的版本信息" class="md-header-anchor"></a><span>2.访问numpy的私有属性version获取numpy的版本信息</span></h3><h3><a name="3利用npzeros函数创建含有10个0的一维数组" class="md-header-anchor"></a><span>3.利用np.zeros()函数创建含有10个0的一维数组</span></h3><h3><a name="4size指的是数组内元素个数而itemsize指的是每个元素的内存大小相乘即是数组的元素内存总大小" class="md-header-anchor"></a><span>4.size指的是数组内元素个数，而itemsize指的是每个元素的内存大小，相乘即是数组的元素内存总大小</span></h3><h3><a name="5用npinfo查看函数的帮助文档与help类似）" class="md-header-anchor"></a><span>5.用np.info查看函数的帮助文档（与help()类似）</span></h3><h3><a name="6numpy的索引与list类似" class="md-header-anchor"></a><span>6.numpy的索引与list类似</span></h3><h3><a name="7nparange用来创建某个数值范围内的一维数组与list的range类似" class="md-header-anchor"></a><span>7.np.arange()用来创建某个数值范围内的一维数组，与list的range类似</span></h3><h3><a name="8数组反转与list相同" class="md-header-anchor"></a><span>8.数组反转，与list相同</span></h3><h3><a name="9先创建一个范围0到8的数组之后通过reshape函数改变其维度注意reshape函数不改变原数组而是返回一个新数组" class="md-header-anchor"></a><span>9.先创建一个范围0到8的数组，之后通过reshape函数改变其维度，注意reshape函数不改变原数组，而是返回一个新数组</span></h3><h3><a name="10通过nonzero来去除数组中的0元素" class="md-header-anchor"></a><span>10.通过nonzero()来去除数组中的0元素</span></h3><h3><a name="11通过npeye函数创建了一个对角矩阵npeyen-mnone-k0-dtypetype-floatnpeye可以创建矩形矩阵且k值可以调节为1的对角线的位置偏离度0居中1向上偏离12偏离2以此类推-1向下偏离值绝对值过大就偏离出去了整个矩阵就全是0了）" class="md-header-anchor"></a><span>11.通过np.eye函数创建了一个对角矩阵。（np.eye(N, M=None, k=0, dtype=&lt;type ‘float&#39;&gt;)，np.eye可以创建矩形矩阵，且k值可以调节，为1的对角线的位置偏离度，0居中，1向上偏离1，2偏离2，以此类推，-1向下偏离。值绝对值过大就偏离出去了，整个矩阵就全是0了）</span></h3><h3><a name="12通过nprandomrandom函数创建随机数数组或矩阵注意nprandom是个内嵌库nprandomrandom才是函数" class="md-header-anchor"></a><span>12.通过np.random.random函数创建随机数数组或矩阵，注意np.random是个内嵌库，np.random.random才是函数</span></h3><h3><a name="13通过maxmin函数获取数组内最值" class="md-header-anchor"></a><span>13.通过max(),min()函数获取数组内最值</span></h3><h3><a name="14通过mean函数获取数组中的平均值" class="md-header-anchor"></a><span>14.通过mean()函数获取数组中的平均值</span></h3><h3><a name="15理解二维数组索引array行索引列索引这题中行列索引是一个整数数组" class="md-header-anchor"></a><span>15.理解二维数组索引array(行索引，列索引)这题中行列索引是一个整数数组</span></h3><h3><a name="16利用nppad函数对数组进行填充numpypadarray-padwidth-mode-kwargspadwidth是填补的长度mode是填充模式有constantedge等模式如果为constant模式就得指定填补的值如果不指定则默认填充0）" class="md-header-anchor"></a><span>16.利用np.pad()函数对数组进行填充（numpy.pad(array, pad_width, mode, **kwargs)pad_width是填补的长度，mode是填充模式，有“constant”，“edge”等模式，如果为constant模式，就得指定填补的值，如果不指定，则默认填充0。）</span></h3><h3><a name="17关于npnan的一些运算性质npnan是一个float类型的数据和none不同）" class="md-header-anchor"></a><span>17.关于np.nan的一些运算性质（np.nan是一个float类型的数据，和None不同）</span></h3><h3><a name="18npdiagarray-中array是一个1维数组时结果形成一个以一维数组为对角线元素的矩阵array是一个二维矩阵时结果输出矩阵的对角线元素" class="md-header-anchor"></a><span>18.np.diag(array) 中，array是一个1维数组时，结果形成一个以一维数组为对角线元素的矩阵，array是一个二维矩阵时，结果输出矩阵的对角线元素</span></h3><h3><a name="19理解二维数组索引" class="md-header-anchor"></a><span>19.理解二维数组索引</span></h3><h3><a name="20理解三维数组的数据排列方式numpyunravelindex函数的作用是获取一个组int类型的索引值在一个多维数组中的位置）" class="md-header-anchor"></a><span>20.理解三维数组的数据排列方式（numpy.unravel_index()函数的作用是获取一个/组int类型的索引值在一个多维数组中的位置）</span></h3><h3><a name="21nptilearray21第一个参数为axis0轴扩大倍数第二个为axis1轴扩大倍数" class="md-header-anchor"></a><span>21.np.tile(array,(2,1))第一个参数为axis=0轴扩大倍数，第二个为axis=1轴扩大倍数</span></h3><h3><a name="22标准化矩阵就是让矩阵的绝对值为1平均值除以标准差表示变异系数这样运算会让矩阵中的数据符合标准正态分布）" class="md-header-anchor"></a><span>22.标准化矩阵（就是让矩阵的绝对值为1，平均值除以标准差表示变异系数，这样运算会让矩阵中的数据符合标准正态分布）</span></h3><h3><a name="23理解numpy中的dtype即数据存储类型" class="md-header-anchor"></a><span>23.理解numpy中的dtype即数据存储类型</span></h3><h3><a name="24矩阵相乘用npdot函数" class="md-header-anchor"></a><span>24.矩阵相乘用np.dot()函数</span></h3><h3><a name="25numpy中的布尔索引这是与list不同的地方筛选数据及其方便" class="md-header-anchor"></a><span>25.numpy中的布尔索引，这是与list不同的地方，筛选数据及其方便</span></h3><h3><a name="26主要是区别npsum和sum函数npsum只会计算数组的和而sum会计算括号内的所有值的和" class="md-header-anchor"></a><span>26.主要是区别np.sum()和sum()函数，np.sum()只会计算数组的和，而sum()会计算括号内的所有值的和</span></h3><h3><a name="27数组的各类运算其中包括数组之间幂运算位运算布尔运算及复数数组等" class="md-header-anchor"></a><span>27.数组的各类运算，其中包括数组之间幂运算、位运算、布尔运算及复数数组等</span></h3><h3><a name="28进一步了解npnan的一些性质" class="md-header-anchor"></a><span>28.进一步了解np.nan的一些性质</span></h3><h3><a name="29这题中考察了三个函数copysignceilabs其中abs是将数组绝对值化ceil是将数组向上取整copysign的作用是将原来数组元素的正负号保留与ceil相似的取整运算还有round和flooruniform是在一个范围内随机取样" class="md-header-anchor"></a><span>29.这题中考察了三个函数copysign(),ceil(),abs()，其中abs是将数组绝对值化，ceil是将数组向上取整，copysign的作用是将原来数组元素的正负号保留，与ceil相似的取整运算还有round()和floor()，uniform()是在一个范围内随机取样</span></h3><h3><a name="30用intersectld函数来比较两个数组返回的是相同的元素组成的数组" class="md-header-anchor"></a><span>30.用intersectld()函数来比较两个数组，返回的是相同的元素组成的数组</span></h3><h3><a name="32numpyemath是具有自动域的数学函数它包括了复数域运算" class="md-header-anchor"></a><span>32.numpy.emath()是具有自动域的数学函数，它包括了复数域运算。</span></h3><h3><a name="33引出numpy数组的另一种数据类型datetime64d日期数据此类型可以方便我们处理日期数据常见用法如获取今天日期npdatetime64today-d用nptimedelta64函数控制时间间隔参数-y-m-w-d分别表示年月周天当然还有更多甚至可精确到阿秒" class="md-header-anchor"></a><span>33.引出numpy数组的另一种数据类型datetime64[D]日期数据，此类型可以方便我们处理日期数据，常见用法如获取今天日期“np.datetime64(&#39;today&#39;, &#39;D&#39;)”，用np.timedelta64函数控制时间间隔，参数 ‘Y’ ’M‘ ‘W’ ‘D’分别表示年，月，周，天，当然还有更多，甚至可精确到阿秒。</span></h3><h3><a name="35介绍了二维数组的运算函数如数组相加除法取负相乘等" class="md-header-anchor"></a><span>35.介绍了二维数组的运算函数，如数组相加，除法，取负，相乘等</span></h3><h3><a name="36题目是将数组向下取整要求用五种不同的方法其中引入了一个新函数trunc它的作用是截取整数部分" class="md-header-anchor"></a><span>36.题目是将数组向下取整，要求用五种不同的方法，其中引入了一个新函数trunc()，它的作用是截取整数部分。</span></h3><h3><a name="37此题所考察的是numpy数组的广播性质" class="md-header-anchor"></a><span>37.此题所考察的是numpy数组的广播性质</span></h3><h3><a name="38引入新函数npfromiter它用于实现动态数组接收以流的形式的任意对象" class="md-header-anchor"></a><span>38.引入新函数np.fromiter，它用于实现动态数组，接收以流的形式的任意对象</span></h3><h3><a name="39利用nplinespace创建一维数组该函数可通过控制参数endpoint来控制是否包含边界" class="md-header-anchor"></a><span>39.利用np.linespace创建一维数组，该函数可通过控制参数endpoint来控制是否包含边界</span></h3><h3><a name="40数组排序可直接使用sort函数" class="md-header-anchor"></a><span>40.数组排序可直接使用sort函数</span></h3><h3><a name="41在docs里面写明npaddreduce函数与npsum函数是等价的但npaddreduce的效率明显更高那是因为npsum在内部调用了npaddreduce函数当阵列大小足够大时差异不明显" class="md-header-anchor"></a><span>41.在docs里面写明np.add.reduce函数与np.sum函数是等价的，但np.add.reduce的效率明显更高，那是因为np.sum在内部调用了np.add.reduce函数，当阵列大小足够大时，差异不明显。</span></h3><h3><a name="42npallclose对比两个数组每个元素是否一一相等默认在1e-05的误差范围内返回值是bool类型nparrayequal可以比较两数组也能比较数组与列表返回值与前者相同" class="md-header-anchor"></a><span>42.np.allclose对比两个数组每个元素是否一一相等，默认在1e-05的误差范围内，返回值是bool类型，np.array_equal可以比较两数组，也能比较数组与列表，返回值与前者相同</span></h3><h3><a name="43通过更改数组的flagswriteable属性来使得数组只可读强行更改会报错" class="md-header-anchor"></a><span>43.通过更改数组的.flags.writeable属性来使得数组只可读，强行更改会报错</span></h3><h3><a name="44-题目中cartesian即平面直角坐标系要将其转化为极坐标系arctan2函数这个函数接受两个参数分别表示y数组和x数组然后返回对应的arctanyx的值结果是弧度制arctan2函数的值域是arctan值域的2倍" class="md-header-anchor"></a><span>44. 题目中cartesian即平面直角坐标系，要将其转化为极坐标系，arctan2()函数，这个函数接受两个参数，分别表示y数组和x数组，然后返回对应的arctan(y/x)的值，结果是弧度制，arctan2()函数的值域是arctan值域的2倍</span></h3><h3><a name="45-argmaxarmin可返回最大值的索引" class="md-header-anchor"></a><span>45. argmax()，armin()可返回最大值的索引</span></h3><h3><a name="46npmeshgrid用来生成网格点坐标矩阵一般会与matplotlib库一起使用来画图不多说说也说不清楚附上链接a-hrefhttpsblogcsdnnetlllxxq141592654articledetails81532855-targetblank链接1aa-hrefhttpsblogcsdnnetweixin41213648articledetails89574739depth1-utmsourcedistributepcrelevantnone-task-blog-blogcommendfrombaidu-2utmsourcedistributepcrelevantnone-task-blog-blogcommendfrombaidu-2-targetblank链接2a" class="md-header-anchor"></a><span>46.np.meshgrid用来生成网格点坐标矩阵，一般会与matplotlib库一起使用来画图，不多说，说也说不清楚，附上链接</span><a href='https://blog.csdn.net/lllxxq141592654/article/details/81532855' target='_blank'><span>链接1</span></a><span>，</span><a href='https://blog.csdn.net/weixin_41213648/article/details/89574739?depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromBaidu-2&utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromBaidu-2' target='_blank'><span>链接2</span></a></h3><h3><a name="47npsubtractouter可用来计算两个数组元素两两的差值nplinalgdet可计算矩阵行列式值注意计算行列式的矩阵必须是方阵线代知识）" class="md-header-anchor"></a><span>47.np.subtract.outer可用来计算两个数组元素两两的差值，np.linalg.det()可计算矩阵行列式值，注意计算行列式的矩阵必须是方阵（线代知识）</span></h3><h3><a name="48npfinfo可用来查看np中每种数据类型可存储的最值eps表示取非负的最小值注意可存储最大值计算方法2字节数-1）-1每个数据存储时带有符号所以字节数-1" class="md-header-anchor"></a><span>48.np.finfo()可用来查看np中每种数据类型可存储的最值，eps表示取非负的最小值，注意可存储最大值计算方法2**（字节数-1）-1，每个数据存储时带有符号，所以字节数-1</span></h3><h3><a name="49-npsetprintoptions是用来控制输出方式的函数a-hrefhttpsblogcsdnnetweixin43584807articledetails103093874depth1-utmsourcedistributepcrelevantnone-task-blog-blogcommendfrombaidu-2utmsourcedistributepcrelevantnone-task-blog-blogcommendfrombaidu-2-targetblank附上链接a答案里的npnan是旧版本的写法会报错新版本改为npinf" class="md-header-anchor"></a><span>49. np.set_printoptions是用来控制输出方式的函数，</span><a href='https://blog.csdn.net/weixin_43584807/article/details/103093874?depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromBaidu-2&utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromBaidu-2' target='_blank'><span>附上链接</span></a><span>，答案里的np.nan是旧版本的写法，会报错，新版本改为np.inf</span></h3><h3><a name="50题目的要求是找出数组中与一个数最相近的元素" class="md-header-anchor"></a><span>50.题目的要求是找出数组中与一个数最相近的元素</span></h3><h3><a name="51再一次深化对dtype的认识我们可以自定义一个dtype目的是为了让数组可以存储不一样的数据类型的数据但有一点数据呈现的有点像结构体的形式也就是不一样数据类型的数据存储在一起是类似于结构体类型a-hrefhttpsblogcsdnnetmessijamesarticledetails80455558depth1-utmsourcedistributepcrelevantnone-task-blog-blogcommendfrombaidu-1utmsourcedistributepcrelevantnone-task-blog-blogcommendfrombaidu-1-targetblank这里有更详细内容aa-hrefhttpsblogcsdnnetzhubao124articledetails80601685depth1-utmsourcedistributepcrelevantnone-task-blog-blogcommendfrombaidu-7utmsourcedistributepcrelevantnone-task-blog-blogcommendfrombaidu-7-targetblank以及这里a" class="md-header-anchor"></a><span>51.再一次深化对dtype的认识，我们可以自定义一个dtype，目的是为了让数组可以存储不一样的数据类型的数据，但有一点数据呈现的有点像结构体的形式，也就是不一样数据类型的数据存储在一起是类似于结构体类型</span><a href='https://blog.csdn.net/MESSI_JAMES/article/details/80455558?depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromBaidu-1&utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromBaidu-1' target='_blank'><span>这里有更详细内容</span></a><span>，</span><a href='https://blog.csdn.net/zhubao124/article/details/80601685?depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromBaidu-7&utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromBaidu-7' target='_blank'><span>以及这里</span></a></h3><h3><a name="52atleastxd-支持将输入数据直接视为-x维这里的-x-可以表示123相当于随机取数后reshape一下这题答案将这个10x2的矩阵第一列作为x轴第二列作为y轴x轴虽然是说从矩阵中取一列但取出来后是以一维数组的形式这时候x-xt作为广播理解x是一行数据以axis1扩10倍再每列分别减去xt得到x中两两之间的差值这就是第一种方法br第二种方法这是一种专门的函数语法scipyspatialdistancecdistxa-xb-metriceuclidean-pnone-vnone-vinone-wnone该函数用于计算两个输入集合的距离a-hrefhttpsblogcsdnnetkancy110articledetails75675574-targetblank详细内容a" class="md-header-anchor"></a><span>52.atleast_xd 支持将输入数据直接视为 x维。这里的 x 可以表示：1，2，3，相当于随机取数后reshape一下，这题答案将这个10X2的矩阵第一列作为x轴，第二列作为y轴，x轴虽然是说从矩阵中取一列，但取出来后是以一维数组的形式，这时候X-X.T作为广播理解，x是一行数据，以axis=1扩10倍再每列分别减去X.T得到x中两两之间的差值，这就是第一种方法。</span><br><span>第二种方法，这是一种专门的函数，语法：scipy.spatial.distance.cdist(XA, XB, metric=&#39;euclidean&#39;, p=None, V=None, VI=None, w=None)，该函数用于计算两个输入集合的距离</span><a href='https://blog.csdn.net/kancy110/article/details/75675574' target='_blank'><span>详细内容</span></a></h3><h3><a name="53调用-ndarray-的-view-函数产生一个视图在numpyndarrayview中提供对内存区域不同的切割方式来完成数据类型的转换而无须要对数据进行额外的copy来节约内存空间" class="md-header-anchor"></a><span>53.调用 ndarray 的 view() 函数产生一个视图，在numpy.ndarray.view中，提供对内存区域不同的切割方式，来完成数据类型的转换，而无须要对数据进行额外的copy，来节约内存空间</span></h3><h3><a name="54npgenfromtxt是numpy内置的用来读取文件的函数genfromtxt主要执行两个循环运算第一个循环将文件的每一行转换成字符串序列第二个循环将每个字符串序列转换为相应的数据类型genfromtxt能够考虑缺失的数据但其他更快和更简单的函数像loadtxt不能考虑缺失值delimiter参数表示数据的分割符a-hrefhttpwwwmamicodecominfo-detail-2277562html-targetblank详细内容a" class="md-header-anchor"></a><span>54.np.genfromtxt是numpy内置的用来读取文件的函数，genfromtxt主要执行两个循环运算。第一个循环将文件的每一行转换成字符串序列。第二个循环将每个字符串序列转换为相应的数据类型。genfromtxt能够考虑缺失的数据,但其他更快和更简单的函数像loadtxt不能考虑缺失值。delimiter参数表示数据的分割符。</span><a href='http://www.mamicode.com/info-detail-2277562.html' target='_blank'><span>详细内容</span></a></h3><h3><a name="55这题讲的是numpy中两种枚举方法ndenumerate函数能放回两个数据------index和相应的值类似于list的enumerate而ndindex能根据数组的形状来获取index" class="md-header-anchor"></a><span>55.这题讲的是numpy中两种枚举方法。ndenumerate()函数能放回两个数据——index和相应的值，类似于list的enumerate。而ndindex能根据数组的形状来获取index。</span></h3><h3><a name="562d-gaussian-like-array即二维类高斯分布二维正态分布）计算公式a-hrefhttpsblogcsdnnetfarmwangarticledetails78699926img-srchttpsimg-blogcsdnnet20171203094927312a看到公式这题就简单了npexp函数是返回e的幂次方a-hrefhttpsblogcsdnnetfarmwangarticledetails78699926-targetblank二维高斯分布a" class="md-header-anchor"></a><span>56.2D Gaussian-like array即二维类高斯分布（二维正态分布），计算公式：</span><a href="https://blog.csdn.net/farmwang/article/details/78699926"><img src="https://img-blog.csdn.net/20171203094927312"/></a><span>看到公式这题就简单了，np.exp函数是返回e的幂次方。</span><a href='https://blog.csdn.net/farmwang/article/details/78699926' target='_blank'><span>二维高斯分布</span></a></h3><h3><a name="57这题是要我们将在数组中替换指定个数随机位置的数如何加入用npputnpputa-ind-v-moderaisea就是目标数组ind是目标数组的位置v是你要加入的值如何随机numpyrandomchoicea-sizenone-replacetrue-pnone从a只要是ndarray都可以但必须是一维的中随机抽取数字size是取得数字的个数replacetrue表示可以取相同数字false表示不可以取相同数字数组p描述数组a中每一个元素取得的概率" class="md-header-anchor"></a><span>57.这题是要我们将在数组中替换指定个数随机位置的数。如何加入：用np.put，np.put(a, ind, v, mode=‘raise’)，a就是目标数组，ind是目标数组的位置，v是你要加入的值。如何随机：numpy.random.choice(a, size=None, replace=True, p=None)，从a(只要是ndarray都可以，但必须是一维的)中随机抽取数字，size是取得数字的个数，replace:True表示可以取相同数字，False表示不可以取相同数字，数组p：描述数组a中每一个元素取得的概率。</span></h3><h3><a name="58深化对mean函数的认识numpymeana-axis-dtype-outkeepdims-当-keepidmstrue保持其二维或者三维的特性结果保持其原来维数默认为-false不保持其二维或者三维的特性结果不保持其原来维数这题后面reshape的作用和keepdims的作用是相同的" class="md-header-anchor"></a><span>58.深化对mean函数的认识。numpy.mean(a, axis, dtype, out，keepdims )当 keepidms=True,保持其二维或者三维的特性,(结果保持其原来维数)默认为 False,不保持其二维或者三维的特性.(结果不保持其原来维数)。这题后面reshape的作用和keepdims的作用是相同的。</span></h3><h3><a name="59对数组指定的列排序argsort函数返回的是一个按照指定列排序后的行索引数组再用索引将其按次序输出同理也可以按行排序" class="md-header-anchor"></a><span>59.对数组指定的列排序，argsort函数返回的是一个按照指定列排序后的行索引数组，再用索引将其按次序输出。同理也可以按行排序。</span></h3><h3><a name="60font-color008000anyfont-函数用于判断给定的可迭代参数-iterable-是否全部为-false则返回-false如果有一个为-true则返回-true符号是按位取反运算符对于数据的每个二进制位取反即把1变成0把0变成1--运算font-color008000x-x-1font第一个anyaxis0是判断每一列是都都为0返回的是一个bool类型数组再用一次any就能判断整个数组是否含有空列" class="md-header-anchor"></a><span>60.</span><font color=#008000><span>any()</span></font><span> 函数用于判断给定的可迭代参数 iterable 是否全部为 False，则返回 False，如果有一个为 True，则返回 True。~符号是按位取反运算符，对于数据的每个二进制位取反，即把1变成0，把0变成1.  运算：</span><font color=#008000><span>~x=-x-1</span></font><span>，第一个any(axis=0)是判断每一列是都都为0返回的是一个bool类型数组，再用一次any()就能判断整个数组是否含有空列。</span></h3><h2><a name="总结对于a-hrefhttpswwwrunoobcompythonpython-operatorshtml-targetblank运算符a一类要记牢以上题目出现的函数要懂得如何使用如果能熟练掌握能提高编程的效率" class="md-header-anchor"></a><span>总结：对于</span><a href='https://www.runoob.com/python/python-operators.html' target='_blank'><span>运算符</span></a><span>一类要记牢，以上题目出现的函数要懂得如何使用，如果能熟练掌握能提高编程的效率。</span></h2></div>
+</body>
+</html>
